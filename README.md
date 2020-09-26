@@ -2,4 +2,4 @@
 First PAC Android Advance
 
 
-This project is made with 2 counts the uoc and my work one but both me :)
+This project is made with 2 accounts the uoc and my work one but both me :)
