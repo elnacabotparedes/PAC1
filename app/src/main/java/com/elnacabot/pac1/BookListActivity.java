@@ -3,6 +3,7 @@ package com.elnacabot.pac1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,17 +41,6 @@ public class BookListActivity extends AppCompatActivity {
 
         list.setAdapter(arrayAdapter);
 
-        frame = findViewById(R.id.frame);
-        if(frame == null)
-        {
-            Toast.makeText(this, "TABLET", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            BookDetailFragment bookdetails = new BookDetailFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.frame, bookdetails).commit();
-        }
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
@@ -64,11 +54,13 @@ public class BookListActivity extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putString("id", String.valueOf(i+1));
                     detailFragment.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().add(R.id.frame, detailFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, detailFragment).commit();
                 }
                 else
                 {
-                    //Intent a BookDetailActivity
+                    Intent intent = new Intent(BookListActivity.this, BookDetailActivity.class);
+                    intent.putExtra("id", String.valueOf(i+1));
+                    startActivity(intent);
                 }
 
             }
