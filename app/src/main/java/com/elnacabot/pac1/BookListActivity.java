@@ -29,6 +29,7 @@ public class BookListActivity extends AppCompatActivity {
 
         list = findViewById(R.id.listElements);
 
+        //Create the list of items
         final String[] elements = new String[10];
         for(int i = 0; i < 10; i++)
         {
@@ -37,15 +38,18 @@ public class BookListActivity extends AppCompatActivity {
 
         arrayList = new ArrayList<>(Arrays.asList(elements));
 
+        //Create the adapter and insert the elements
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.book_detail, R.id.content, arrayList);
 
         list.setAdapter(arrayAdapter);
 
+        //Control if item is selected in the list and print in the view
         list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                //Control if a fragment exist in the view to difference MOBILE - TABLET
                 frame = findViewById(R.id.frame);
                 if(frame != null)
                 {
@@ -58,6 +62,7 @@ public class BookListActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    /*MOBILE*/
                     Intent intent = new Intent(BookListActivity.this, BookDetailActivity.class);
                     intent.putExtra("id", String.valueOf(i+1));
                     startActivity(intent);

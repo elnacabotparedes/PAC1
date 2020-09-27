@@ -32,15 +32,18 @@ public class BookDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+        //Recover the information of the item selected
         Intent i = getIntent();
         String id = i.getStringExtra("id");
 
+        //Pass the information to the fragment in order to be shown
         Bundle bundle = new Bundle();
         bundle.putString("id", String.valueOf(id));
         BookDetailFragment detailFragment = new BookDetailFragment();
         detailFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, detailFragment).commit();
 
+        //Add title to toolbar
         toolbarTitle = findViewById(R.id.toolbarTitle);
         toolbarTitle.setText("Item "+id);
 

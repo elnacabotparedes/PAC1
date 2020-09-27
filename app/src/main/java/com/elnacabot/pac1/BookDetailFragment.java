@@ -32,10 +32,14 @@ public class BookDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //Inflate the Fragment in the view
         View view = inflater.inflate(R.layout.fragment_book_detail, container, false);
+
+        //Recover the information from the item selected
         Bundle bundle = getArguments();
         if(bundle != null)
         {
+            //Print the information in the fragment
             TextView id = (TextView) view.findViewById(R.id.idItem);
             id.setText(bundle.getString("id", "example"));
         }
