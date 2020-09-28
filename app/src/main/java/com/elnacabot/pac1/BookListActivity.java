@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -20,20 +23,17 @@ import com.elnacabot.pac1.model.BookModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class BookListActivity extends AppCompatActivity {
 
-    private ListView list;
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> arrayList;
-    private FrameLayout frame;
-
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
-    private BookModel bookModel;
+    private List<BookItem> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,56 +55,56 @@ public class BookListActivity extends AppCompatActivity {
             tablet = true;
         }
 
-        mAdapter = new MyAdapter(bookModel.getItems(), tablet);
+        list = bookModel.getItems();
+
+        mAdapter = new MyAdapter(list, tablet);
 
         recyclerView.setAdapter(mAdapter);
 
+    }
 
-        /*
-        list = findViewById(R.id.listElements);
-
-        //Create the list of items
-        final String[] elements = new String[10];
-        for(int i = 0; i < 10; i++)
-        {
-            elements[i] = (i+1)+ "   Item " + (i+1);
-        }
-
-        arrayList = new ArrayList<>(Arrays.asList(elements));
-
-        //Create the adapter and insert the elements
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.book_detail, R.id.content, arrayList);
-
-        list.setAdapter(arrayAdapter);
-
-        //Control if item is selected in the list and print in the view
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
+    private void SortByTitle()
+    {
+        Collections.sort(list, new Comparator<BookItem>() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                //Control if a fragment exist in the view to difference MOBILE - TABLET
-                frame = findViewById(R.id.frame);
-                if(frame != null)
-                {
-                    BookDetailFragment detailFragment = new BookDetailFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id", String.valueOf(i+1));
-                    detailFragment.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, detailFragment).commit();
-                }
-                else
-                {
-                    Intent intent = new Intent(BookListActivity.this, BookDetailActivity.class);
-                    intent.putExtra("id", String.valueOf(i+1));
-                    startActivity(intent);
-                }
-
+            public int compare(BookItem item1, BookItem item2) {
+                return item1.getTitle().compareTo(item2.getTitle());
             }
-        });*/
+        });
+        mAdapter.notifyDataSetChanged();
+    }
 
+    private void SortByAuthor()
+    {
+        Collections.sort(list, new Comparator<BookItem>() {
+            @Override
+            public int compare(BookItem item1, BookItem item2) {
+                return item1.getAuthor().compareTo(item2.getAuthor());
+            }
+        });
+        mAdapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.sortTitle:
+                SortByTitle();
+                return true;
+            case R.id.sortAuthor:
+                SortByAuthor();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,22 +1,16 @@
 package com.elnacabot.pac1;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.elnacabot.pac1.model.BookItem;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -44,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         if( viewType == EVEN)
         {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pair_layout, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.even_layout, parent, false);
             return new MyViewHolder(view);
         }
 
@@ -112,12 +106,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         int type;
 
-        if( position == 0 ) {
-            type = ODD;
+        if( (position % 2) == 0 ) {
+            type = EVEN;
         }
         else
         {
-            type = EVEN;
+            type = ODD;
         }
 
         return type;
