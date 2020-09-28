@@ -22,4 +22,14 @@ public class BookItem {
         this.url = url;
     }
 
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public String getAuthor()
+    {
+        return author;
+    }
+
 }
