@@ -54,9 +54,6 @@ public class BookDetailFragment extends Fragment {
             date.setText(bundle.getString("date", "example"));
             description.setText(bundle.getString("description", "example"));
 
-            //Print the information in the fragment
-            //TextView id = (TextView) view.findViewById(R.id.idItem);
-            //id.setText(bundle.getString("id", "example"));
         }
         return view;
     }

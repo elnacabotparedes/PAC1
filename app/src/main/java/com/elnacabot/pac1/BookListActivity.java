@@ -48,7 +48,14 @@ public class BookListActivity extends AppCompatActivity {
 
         BookModel bookModel = new BookModel();
 
-        mAdapter = new MyAdapter(bookModel.getItems());
+        FrameLayout frame = findViewById(R.id.frame);
+        Boolean tablet = false;
+        if(frame != null)
+        {
+            tablet = true;
+        }
+
+        mAdapter = new MyAdapter(bookModel.getItems(), tablet);
 
         recyclerView.setAdapter(mAdapter);
 
