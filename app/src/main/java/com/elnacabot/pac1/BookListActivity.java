@@ -2,18 +2,25 @@ package com.elnacabot.pac1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.elnacabot.pac1.model.BookItem;
+import com.elnacabot.pac1.model.BookModel;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class BookListActivity extends AppCompatActivity {
 
@@ -22,11 +29,38 @@ public class BookListActivity extends AppCompatActivity {
     private ArrayList<String> arrayList;
     private FrameLayout frame;
 
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private BookModel bookModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
 
+        recyclerView = findViewById(R.id.listElements);
+
+        layoutManager = new LinearLayoutManager(this);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        BookModel bookModel = new BookModel();
+
+        FrameLayout frame = findViewById(R.id.frame);
+        Boolean tablet = false;
+        if(frame != null)
+        {
+            tablet = true;
+        }
+
+        mAdapter = new MyAdapter(bookModel.getItems(), tablet);
+
+        recyclerView.setAdapter(mAdapter);
+
+
+        /*
         list = findViewById(R.id.listElements);
 
         //Create the list of items
@@ -53,7 +87,6 @@ public class BookListActivity extends AppCompatActivity {
                 frame = findViewById(R.id.frame);
                 if(frame != null)
                 {
-                    /*TABLET*/
                     BookDetailFragment detailFragment = new BookDetailFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("id", String.valueOf(i+1));
@@ -62,14 +95,13 @@ public class BookListActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    /*MOBILE*/
                     Intent intent = new Intent(BookListActivity.this, BookDetailActivity.class);
                     intent.putExtra("id", String.valueOf(i+1));
                     startActivity(intent);
                 }
 
             }
-        });
+        });*/
 
 
 
