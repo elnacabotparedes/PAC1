@@ -39,6 +39,8 @@ public class BookDetailActivity extends AppCompatActivity {
         //Pass the information to the fragment in order to be shown
         Bundle bundle = new Bundle();
         bundle.putString("id", String.valueOf(id));
+        bundle.putString("author", i.getStringExtra("author"));
+        bundle.putString("description", i.getStringExtra("description"));
         BookDetailFragment detailFragment = new BookDetailFragment();
         detailFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, detailFragment).commit();

@@ -1,12 +1,15 @@
 package com.elnacabot.pac1;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.elnacabot.pac1.model.BookItem;
 
@@ -47,12 +50,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position)
     {
 
         holder.title.setText(items.get(position).title);
         holder.author.setText(items.get(position).author);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(holder.itemView.getContext(), BookDetailActivity.class);
+                intent.putExtra("id", String.valueOf(position+1));
+                intent.putExtra("author", items.get(position).author);
+                intent.putExtra("description", items.get(position).description);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+
     }
+
+
 
     @Override
     public int getItemCount() {

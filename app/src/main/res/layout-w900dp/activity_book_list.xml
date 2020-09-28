@@ -7,7 +7,7 @@
     android:weightSum="2"
     >
 
-        <ListView
+        <view class="androidx.appcompat.app.AlertController$RecycleListView"
             android:id="@+id/listElements"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -40,7 +40,7 @@ public class BookListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
 
-        recyclerView = findViewById(R.id.elements);
+        recyclerView = findViewById(R.id.listElements);
 
         layoutManager = new LinearLayoutManager(this);
 
