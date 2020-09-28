@@ -41,13 +41,14 @@ public class BookDetailActivity extends AppCompatActivity {
         bundle.putString("id", String.valueOf(id));
         bundle.putString("author", i.getStringExtra("author"));
         bundle.putString("description", i.getStringExtra("description"));
+        bundle.putString("date", i.getStringExtra("date"));
         BookDetailFragment detailFragment = new BookDetailFragment();
         detailFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, detailFragment).commit();
 
         //Add title to toolbar
         toolbarTitle = findViewById(R.id.toolbarTitle);
-        toolbarTitle.setText("Item "+id);
+        toolbarTitle.setText(i.getStringExtra("title"));
 
     }
 }

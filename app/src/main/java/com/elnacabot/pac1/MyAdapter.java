@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.elnacabot.pac1.model.BookItem;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -62,7 +64,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
                 Intent intent = new Intent(holder.itemView.getContext(), BookDetailActivity.class);
                 intent.putExtra("id", String.valueOf(position+1));
+                intent.putExtra("title", items.get(position).title);
                 intent.putExtra("author", items.get(position).author);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String dateTime = dateFormat.format(items.get(position).date_publish);
+                intent.putExtra("date", dateTime);
+
                 intent.putExtra("description", items.get(position).description);
                 holder.itemView.getContext().startActivity(intent);
             }

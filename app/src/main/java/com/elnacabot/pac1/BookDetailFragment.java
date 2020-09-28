@@ -49,7 +49,9 @@ public class BookDetailFragment extends Fragment {
         if(bundle != null)
         {
 
+            imageBook.setImageResource(R.drawable.book);
             author.setText(bundle.getString("author", "example"));
+            date.setText(bundle.getString("date", "example"));
             description.setText(bundle.getString("description", "example"));
 
             //Print the information in the fragment
