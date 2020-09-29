@@ -46,6 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.odd_layout, parent, false);
         }
+
         return new MyViewHolder(view);
 
     }
@@ -73,6 +74,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     intent.putExtra("title", items.get(position).title);
                     intent.putExtra("author", items.get(position).author);
                     intent.putExtra("date", dateTime);
+                    intent.putExtra("description", items.get(position).description);
 
                     intent.putExtra("description", items.get(position).description);
                     holder.itemView.getContext().startActivity(intent);
@@ -86,6 +88,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     bundle.putString("title", items.get(position).title);
                     bundle.putString("author", items.get(position).author);
                     bundle.putString("date", dateTime);
+                    bundle.putString("description", items.get(position).description);
                     detailFragment.setArguments(bundle);
                     ((AppCompatActivity) holder.itemView.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.frame, detailFragment).commit();
                 }
