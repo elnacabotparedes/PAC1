@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.elnacabot.pac1.model.BookItem;
 
@@ -36,15 +38,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         View view = null;
 
-        if( viewType == EVEN)
+        if( tablet == true)
         {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.even_layout, parent, false);
-            return new MyViewHolder(view);
-        }
+            if( viewType == EVEN)
+            {
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.even_layout, parent, false);
+                return new MyViewHolder(view);
+            }
 
-        if( viewType == ODD)
+            if( viewType == ODD)
+            {
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.odd_layout, parent, false);
+            }
+        }
+        else
         {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.odd_layout, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adaptative_elements, parent, false);
         }
 
         return new MyViewHolder(view);
@@ -57,6 +66,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.title.setText(items.get(position).title);
         holder.author.setText(items.get(position).author);
+
+        int id = ((AppCompatActivity) holder.itemView.getContext()).getResources().getIdentifier(items.get(position).url, "drawable",((AppCompatActivity) holder.itemView.getContext()).getPackageName());
+        holder.imageView.setBackgroundResource(id);
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,13 +140,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public TextView title;
         public TextView author;
-        public FrameLayout frame;
+        public ImageView imageView;
 
         public MyViewHolder(@NonNull View root) {
             super(root);
 
             title = root.findViewById(R.id.title);
             author = root.findViewById(R.id.author);
+            imageView = root.findViewById(R.id.imageView);
         }
     }
 }
