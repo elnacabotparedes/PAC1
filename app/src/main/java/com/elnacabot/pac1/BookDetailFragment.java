@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -52,6 +53,10 @@ public class BookDetailFragment extends Fragment {
             author.setText(bundle.getString("author", "example"));
             date.setText(bundle.getString("date", "example"));
             description.setText(bundle.getString("description", "example"));
+
+            String imageName = bundle.getString("image", "example");
+            int id = this.getResources().getIdentifier(imageName, "drawable",getContext().getPackageName());
+            imageBook.setImageResource(id);
 
         }
         return view;

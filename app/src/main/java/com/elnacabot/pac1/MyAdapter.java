@@ -88,7 +88,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     intent.putExtra("author", items.get(position).author);
                     intent.putExtra("date", dateTime);
                     intent.putExtra("description", items.get(position).description);
-
+                    intent.putExtra("image", items.get(position).url);
                     intent.putExtra("description", items.get(position).description);
                     holder.itemView.getContext().startActivity(intent);
                 }
@@ -102,6 +102,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     bundle.putString("author", items.get(position).author);
                     bundle.putString("date", dateTime);
                     bundle.putString("description", items.get(position).description);
+                    bundle.putString("image", items.get(position).url);
                     detailFragment.setArguments(bundle);
                     ((AppCompatActivity) holder.itemView.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.frame, detailFragment).commit();
                 }
