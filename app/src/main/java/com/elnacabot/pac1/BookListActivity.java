@@ -45,20 +45,25 @@ public class BookListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
 
-        BookModel bookModel = new BookModel();
-
+        //Control if fragment exist in the view
         FrameLayout frame = findViewById(R.id.frame);
         Boolean tablet = false;
+        //Fragment exist => Tablet / If not => Mobile
         if(frame != null)
         {
             tablet = true;
         }
 
+        //Recover the list of books
+        BookModel bookModel = new BookModel();
         list = bookModel.getItems();
+
+        //Prepare the recycle
         recyclerView = findViewById(R.id.listElements);
 
         if(tablet == true)
         {
+            //If its the table use the Layout Manager
             layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
             mAdapter = new MyAdapter(list, tablet);
@@ -66,6 +71,7 @@ public class BookListActivity extends AppCompatActivity {
         }
         else
         {
+            //If its a mobile use the StaggeredGridManager in order to obtain 2 columns
             manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(manager);
             mAdapter = new MyAdapter(list, tablet);
@@ -74,6 +80,7 @@ public class BookListActivity extends AppCompatActivity {
 
     }
 
+    //Sort the list of elements by title
     private void SortByTitle()
     {
         Collections.sort(list, new Comparator<BookItem>() {
@@ -85,6 +92,7 @@ public class BookListActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    //Sort the list of elements by author
     private void SortByAuthor()
     {
         Collections.sort(list, new Comparator<BookItem>() {
@@ -96,6 +104,7 @@ public class BookListActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    //Charge the menu in the view
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -104,6 +113,7 @@ public class BookListActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Control which option of the menu is selected and sort the adapter
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items

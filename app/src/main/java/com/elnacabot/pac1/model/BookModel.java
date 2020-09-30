@@ -9,6 +9,7 @@ public class BookModel {
 
     public static final List<BookItem> ITEMS = new ArrayList<>();
 
+    //Add the elements in the list
     static
     {
         BookItem book1 = new BookItem(0, "Title2", "Author3", new Date(), "Description", "book" );
