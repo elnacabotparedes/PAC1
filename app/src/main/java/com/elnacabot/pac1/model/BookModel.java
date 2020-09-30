@@ -17,10 +17,9 @@ public class BookModel {
         BookItem book4 = new BookItem(0, "Title1", "Author4", new Date(), "Description 4", "book3" );
         BookItem book5 = new BookItem(0, "Title4", "Author6", new Date(), "Description 5", "book4" );
         BookItem book6 = new BookItem(0, "Title6", "Author1", new Date(), "Description 6", "book5" );
-        BookItem book7 = new BookItem(0, "Title9", "Author10", new Date(), "Description 7", "book4" );
-        BookItem book8 = new BookItem(0, "Title10", "Author7", new Date(), "Description 8", "book1" );
+        BookItem book7 = new BookItem(0, "Title9", "Author9", new Date(), "Description 7", "book4" );
+        BookItem book8 = new BookItem(0, "Title8", "Author7", new Date(), "Description 8", "book1" );
         BookItem book9 = new BookItem(0, "Title7", "Author8", new Date(), "Description 9", "book2" );
-        BookItem book10 = new BookItem(0, "Title8", "Author9", new Date(), "Description 10", "book3" );
 
         ITEMS.add(book1);
         ITEMS.add(book2);
@@ -31,7 +30,6 @@ public class BookModel {
         ITEMS.add(book7);
         ITEMS.add(book8);
         ITEMS.add(book9);
-        ITEMS.add(book10);
     }
 
     public List<BookItem> getItems()

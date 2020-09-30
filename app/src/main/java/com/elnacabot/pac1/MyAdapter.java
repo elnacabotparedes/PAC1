@@ -67,9 +67,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.title.setText(items.get(position).title);
         holder.author.setText(items.get(position).author);
 
-        int id = ((AppCompatActivity) holder.itemView.getContext()).getResources().getIdentifier(items.get(position).url, "drawable",((AppCompatActivity) holder.itemView.getContext()).getPackageName());
-        holder.imageView.setBackgroundResource(id);
-
+        if(!tablet)
+        {
+            int id = ((AppCompatActivity) holder.itemView.getContext()).getResources().getIdentifier(items.get(position).url, "drawable",((AppCompatActivity) holder.itemView.getContext()).getPackageName());
+            holder.imageView.setImageResource(id);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
