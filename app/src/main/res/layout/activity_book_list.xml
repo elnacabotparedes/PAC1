@@ -18,6 +18,10 @@
         android:id="@+id/listElements"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fadingEdge="horizontal"
+        android:fadingEdgeLength="30dp"
+        android:fillViewport="false"
+        android:requiresFadingEdge="vertical"
         />
 
 </LinearLayout>

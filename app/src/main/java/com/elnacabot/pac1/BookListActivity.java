@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,16 +36,14 @@ public class BookListActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private List<BookItem> list;
 
+    private StaggeredGridLayoutManager manager;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
-
-        recyclerView = findViewById(R.id.listElements);
-
-        layoutManager = new LinearLayoutManager(this);
-
-        recyclerView.setLayoutManager(layoutManager);
 
         BookModel bookModel = new BookModel();
 
@@ -56,10 +55,22 @@ public class BookListActivity extends AppCompatActivity {
         }
 
         list = bookModel.getItems();
+        recyclerView = findViewById(R.id.listElements);
 
-        mAdapter = new MyAdapter(list, tablet);
-
-        recyclerView.setAdapter(mAdapter);
+        if(tablet == true)
+        {
+            layoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(layoutManager);
+            mAdapter = new MyAdapter(list, tablet);
+            recyclerView.setAdapter(mAdapter);
+        }
+        else
+        {
+            manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+            recyclerView.setLayoutManager(manager);
+            mAdapter = new MyAdapter(list, tablet);
+            recyclerView.setAdapter(mAdapter);
+        }
 
     }
 

@@ -42,6 +42,7 @@ public class BookDetailActivity extends AppCompatActivity {
         bundle.putString("author", i.getStringExtra("author"));
         bundle.putString("description", i.getStringExtra("description"));
         bundle.putString("date", i.getStringExtra("date"));
+        bundle.putString("image", i.getStringExtra("image"));
         BookDetailFragment detailFragment = new BookDetailFragment();
         detailFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, detailFragment).commit();
